@@ -9,7 +9,7 @@ import android.os.Parcelable;
 
 public class Point implements Parcelable {
 
-    private int compteur;
+    public int counter;
 
     @Override
     public int describeContents() {
@@ -19,7 +19,7 @@ public class Point implements Parcelable {
     @Override
     public void writeToParcel(Parcel out, int flags) {
 
-        out.writeInt(compteur);
+        out.writeInt(counter);
     }
 
     public static final Parcelable.Creator<Point> CREATOR = new Parcelable.Creator<Point>() {
@@ -35,8 +35,12 @@ public class Point implements Parcelable {
         }
     };
 
+    public Point() {
+        this.counter = 0;
+    }
+
     private Point(Parcel in) {
-        this.compteur = in.readInt();
+        this.counter = in.readInt();
     }
 }
 
