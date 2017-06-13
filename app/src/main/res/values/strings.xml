@@ -1,3 +1,10 @@
 <resources>
     <string name="app_name">DTA_android_tp9</string>
+    <string name="msg_onCreate">onCreate</string>
+    <string name="msg_onPause">onPause</string>
+    <string name="msg_onResume">onResume</string>
+    <string name="msg_onStop">onStop</string>
+    <string name="msg_onDestroy">onDestroy</string>
+    <string name="msg_onSaveInstanceState">onSaveInstanceState</string>
+    <string name="msg_onRestoreInstanceState">onRestoreInstanceState</string>
 </resources>
