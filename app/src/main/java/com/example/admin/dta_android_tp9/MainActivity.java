@@ -1,5 +1,6 @@
 package com.example.admin.dta_android_tp9;
 
+import android.content.SharedPreferences;
 import android.os.Parcel;
 import android.os.Parcelable;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 public class MainActivity extends Traceur {
 
+    static final String COUNTER = "COUNTER";
     Point point;
 
     @Override
@@ -29,6 +31,16 @@ public class MainActivity extends Traceur {
                 showCounter();
             }
         });
+
+        loadParameters();
+    }
+
+    private void loadParameters() {
+        SharedPreferences sharedPreferences = getSharedPreferences("TP9", MODE_PRIVATE);
+        if(sharedPreferences.contains(COUNTER)) {
+            point.counter = sharedPreferences.getInt(COUNTER, 0);
+            showCounter();
+        }
     }
 
     @Override
@@ -45,6 +57,22 @@ public class MainActivity extends Traceur {
         //outState.putInt("counter", counter);
         outState.putParcelable("point", point);
     }
+
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        saveParameters();
+    }
+
+    private void saveParameters() {
+       SharedPreferences sharedPreferences = getSharedPreferences("TP9", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putInt(COUNTER, point.counter);
+        editor.commit();
+    }
+
+
 
     private void showCounter() {
         TextView ctl_text_counter = (TextView) findViewById(R.id.labelValue);
